@@ -2,9 +2,6 @@ Limpiar yo
 Estructura html yo
 Un poco de css yo
 Iniciar proyecto con git hacerse
-    - Iniciar proyecto
-    - Primer commit
-    - Conectarse a GitHub
     - Crear 3 ramas
 Conectarse a la appi 
  - Probar en consola 
