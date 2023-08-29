@@ -4,6 +4,8 @@ Un poco de css yo
 Iniciar proyecto con git hacerse
     - Crear 3 ramas
 Conectarse a la appi 
- - Probar en consola 
  - Probar en html renderizado
  - Registrase para llave gratuita en la appi
+
+ git checkout cambiar de rama y de commit
+ 
