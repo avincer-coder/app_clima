@@ -54,16 +54,16 @@ function App() {
           <button onClick={mostrar_modal} className='search'>Search for places</button>
           <button className='mira'>Icono</button>
         </div>
-        <div>
+        <div className='contenedor_imagenes'>
           <img className='nubes_fondo' src="./img/Cloud-background.png" alt="imagen nubes de fondo" />
           <img className='sol_nube_lluvia' src="img/shower.png" alt="nube y sol" />
         </div>
         <div className='grados'>
           <p>{DataResponse?.list[0].main.temp}</p>
           <p className='letras_transparente'>°C</p> 
-        </div>
+        </div >
          <p className='letras_transparente'>{DataResponse?.list[0].weather[0].main.temp }</p>
-         <div>
+         <div className='fecha'>
             <p className='letras_transparente'>Today</p>
             <p className='letras_transparente'>‧</p>
             {/* <p className='letras_transparente'>{DataResponse?.list[0].dt_txt}</p> */}
@@ -88,8 +88,29 @@ function App() {
           <Card
             dia="Tomorrow" />
         </div>
+        <h1>Today's HighLights</h1>
         <div className='derecha_abajo'>
-          <Card_abajo/>
+          
+          <Card_abajo
+          top="Wind status"
+          middleNumber="7"
+          middleMesure="mph"
+          end="WSW"/>
+          <Card_abajo
+          top="Wind status"
+          middleNumber="7"
+          middleMesure="mph"
+          end="WSW"/>
+          <Card_abajo
+          top="Wind status"
+          middleNumber="7"
+          middleMesure="mph"
+          end="WSW"/>
+          <Card_abajo
+          top="Wind status"
+          middleNumber="7"
+          middleMesure="mph"
+          end="WSW"/>
         </div>
         
         
@@ -101,13 +122,13 @@ function App() {
       </section> */}
 
             {usoDeModal&&
-            <div className="contenedor_modal">
-              <button onClick={cerrar_modal}>X</button>
-              <div>
-                <input type="text" />
-                <button>Search</button>
-              </div>
-            </div>}
+      <div className="contenedor_modal">
+        <button onClick={cerrar_modal}>X</button>
+          <div>
+            <input type="text" />
+            <button>Search</button>
+          </div>
+      </div>}
       
       
       
