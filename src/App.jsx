@@ -6,7 +6,7 @@ import Card_abajo from './componentes/card_abajo/card_abajo'
 
 function App() {
     const [DataResponse, setDataResponse] = useState(null) 
-
+    
     useEffect( ()=>{
      
       let ciudad = "London";
@@ -29,10 +29,13 @@ function App() {
     },[])
     console.log("Aqui viene la informacion fuera de useEffect")
     console.log(DataResponse)
-
-
-
-
+    function mostrar_modal(){
+      setUsoDeModal(true)
+    }
+    const [usoDeModal, setUsoDeModal] = useState(false);
+    function cerrar_modal(){
+      setUsoDeModal(false)
+    }
 
 
 
@@ -48,7 +51,7 @@ function App() {
     <main className='main_all'>
       <section className='izquierda'>
         <div className='contenedor_btn_arriba'>
-          <button className='search'>Search for places</button>
+          <button onClick={mostrar_modal} className='search'>Search for places</button>
           <button className='mira'>Icono</button>
         </div>
         <div>
@@ -56,18 +59,18 @@ function App() {
           <img className='sol_nube_lluvia' src="img/shower.png" alt="nube y sol" />
         </div>
         <div className='grados'>
-          <p>15</p>
+          <p>{DataResponse?.list[0].main.temp}</p>
           <p className='letras_transparente'>°C</p> 
         </div>
-         <p className='letras_transparente'>Shower</p>
+         <p className='letras_transparente'>{DataResponse?.list[0].weather[0].main.temp }</p>
          <div>
             <p className='letras_transparente'>Today</p>
             <p className='letras_transparente'>‧</p>
-            <p className='letras_transparente'>Fri, 5 Jun</p>
+            {/* <p className='letras_transparente'>{DataResponse?.list[0].dt_txt}</p> */}
          </div>
          <div className='pie_pagina'>
             <img  className='Icono_ubicacion' src="" alt="icono ubicacion" />
-            <p className='letras_transparente'>Helsinki</p>
+            <p className='letras_transparente'>{DataResponse?.city.name}</p>
          </div>
       </section>
 
@@ -97,8 +100,18 @@ function App() {
         <p>Temperatura: {DataResponse?.main.temp}</p>
       </section> */}
 
-
-    
+            {usoDeModal&&
+            <div className="contenedor_modal">
+              <button onClick={cerrar_modal}>X</button>
+              <div>
+                <input type="text" />
+                <button>Search</button>
+              </div>
+            </div>}
+      
+      
+      
+      
 
     </main>
   )
