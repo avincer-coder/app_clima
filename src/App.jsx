@@ -6,12 +6,13 @@ import Card_abajo from './componentes/card_abajo/card_abajo'
 
 function App() {
     const [DataResponse, setDataResponse] = useState(null) 
-    
+    const [cambioCiudad, SetCambioCiudad] = useState("London")
     useEffect( ()=>{
      
-      let ciudad = "London";
+      
+      // let ciudad = "London";
       const apiKey = "7273842f78e9cc5efe909fab65025514";
-      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${ciudad}&appid=${apiKey}`;
+      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cambioCiudad}&appid=${apiKey}`;
       console.log(url)
       axios.get(url) // Json con data es asincronico (no sabemos exactamente el tiempo en el que va a llegar)
       .then( 
@@ -26,7 +27,7 @@ function App() {
           console.error(error.message)
         }
       )
-    },[])
+    },[cambioCiudad])
     console.log("Aqui viene la informacion fuera de useEffect")
     console.log(DataResponse)
     // console.log(DataResponse.list[0].dt)
@@ -64,16 +65,44 @@ function App() {
     // console.log(DataResponse.list[0].dt_txt)
 
     function clima_london(){
+      SetCambioCiudad("London")
       console.log("onclick london")
     }
     function clima_barsa(){
+      SetCambioCiudad("Barcelona")
       console.log("onclick barsa")
     }
     function clima_canada(){
-      // ciudad = "Canada"
+      SetCambioCiudad("Canada")
       console.log("onclick canada")
     }
     
+
+
+    
+
+    function ImgClimaDinamico(Clima){
+      // let ImgClima = "img/Clear.png"
+      console.log(Clima)
+
+      if(Clima == "Clouds"){
+        let ImgClima = "img/shower.png"
+        return ImgClima
+      }
+      else if(Clima == "Clear"){
+        let ImgClima = "img/Clear.png"
+        return ImgClima
+      }
+      else if(Clima == "Rain"){
+        let ImgClima = "img/LightRain.png"
+        return ImgClima
+      }
+
+      
+    }
+
+
+    // let ImgClima = "img/shower.png"
 
 
   
@@ -90,8 +119,8 @@ function App() {
           <button className='mira'>Icono</button>
         </div>
         <div className='contenedor_imagenes'>
-          <img className='nubes_fondo' src="/img/Cloud-background.png" alt="imagen nubes de fondo" />
-          <img className='sol_nube_lluvia' src="img/shower.png" alt="nube y sol" />
+          {/* <img className='nubes_fondo' src="/img/Cloud-background.png" alt="imagen nubes de fondo" /> */}
+          <img className='sol_nube_lluvia' src={ImgClimaDinamico(DataResponse?.list[0].weather[0].main)} alt="nube y sol" />
         </div>
         <div className='grados'>
           <p>{DataResponse?.list[0].main.temp/10
@@ -121,6 +150,7 @@ function App() {
             
             <Card
               dia={formatTimestamp(cadaList.dt)}
+              imgsDinamicas={ImgClimaDinamico(cadaList.weather[0].main)}
               gradosMinimo={cadaList.main.temp_min.toFixed()/10}
               gradosMaximo={cadaList.main.temp_max.toFixed()/10}
               
