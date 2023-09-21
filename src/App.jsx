@@ -28,29 +28,26 @@ function App() {
         }
       )
     },[cambioCiudad])
-    console.log("Aqui viene la informacion fuera de useEffect")
-    console.log(DataResponse)
-    // console.log(DataResponse.list[0].dt)
 
 
 
     function formatTimestamp(timestamp) {
       const date = new Date(timestamp * 1000);
+
+
       const year = date.getFullYear();
 
-
+      const nombresDias = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
       const monthNames = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
       ];
       const month = monthNames[date.getMonth()]; 
 
-
-      const day = date.getDate();
-      const hours = date.getHours();
-      const minutes = date.getMinutes();
-      const seconds = date.getSeconds();
-      return `${year} ${day}-${month}`;
+      // const day = nombresDias[0]; 
+      const day = nombresDias[date.getDay()];
+      const dayMonth = date.getDate();
+      return `  ${day} ${dayMonth} ${month}`;
     } 
 
 
@@ -62,19 +59,15 @@ function App() {
     function cerrar_modal(){
       setUsoDeModal(false)
     }
-    // console.log(DataResponse.list[0].dt_txt)
 
     function clima_london(){
       SetCambioCiudad("London")
-      console.log("onclick london")
     }
     function clima_barsa(){
       SetCambioCiudad("Barcelona")
-      console.log("onclick barsa")
     }
     function clima_canada(){
       SetCambioCiudad("Canada")
-      console.log("onclick canada")
     }
     
 
@@ -82,8 +75,6 @@ function App() {
     
 
     function ImgClimaDinamico(Clima){
-      // let ImgClima = "img/Clear.png"
-      console.log(Clima)
 
       if(Clima == "Clouds"){
         let ImgClima = "img/shower.png"
@@ -100,16 +91,8 @@ function App() {
 
       
     }
-
-
-    // let ImgClima = "img/shower.png"
-
-
-  
-
-
-
-
+    console.log("Aqui viene la variable DataResponse con elementeos")
+    console.log(DataResponse)
 
   return (
     <main className='main_all'>
@@ -123,9 +106,9 @@ function App() {
           <img className='sol_nube_lluvia' src={ImgClimaDinamico(DataResponse?.list[0].weather[0].main)} alt="nube y sol" />
         </div>
         <div className='grados'>
-          <p>{DataResponse?.list[0].main.temp/10
-          
-          }</p>
+          <p>
+            {DataResponse?.list[0].main.temp.toFixed()/10}
+          </p>
           <p className='letras_transparente'>°C</p> 
         </div >
          <p className='letras_transparente'>{DataResponse?.list[0].weather[0].main.temp}</p>
@@ -167,26 +150,55 @@ function App() {
         <h1>Today's HighLights</h1>
         <div className='derecha_abajo'>
           
+          <div className="contenedor_card_abajo">
+            <Card_abajo
+            top="Wind status"
+            middleNumber={DataResponse?.list[0].wind.speed}
+            middleMesure="mph"
+            />
+            <div>
+                <img src="" alt="" />
+                <p>WSW</p>
+            </div>
+          </div>
+          
+          <div className="contenedor_card_abajo">
           <Card_abajo
-          top="Wind status"
-          middleNumber="7"
-          middleMesure="mph"
-          end="WSW"/>
+          top="Humidity"
+          middleNumber={DataResponse?.list[0].main.humidity} 
+          middleMesure="%"/>
+            <div>
+               <progress value={DataResponse?.list[0].main.humidity} max="100"></progress>
+            </div>
+          </div>
+          
+          
+          
+          <div className="contenedor_card_abajo">
           <Card_abajo
-          top="Wind status"
-          middleNumber="7"
-          middleMesure="mph"
-          end="WSW"/>
+          top="Visibility"
+          middleNumber={DataResponse?.list[0].visibility/1000}
+          middleMesure="mph"/>
+          </div>
+          
+          
+          <div className="contenedor_card_abajo">
           <Card_abajo
-          top="Wind status"
-          middleNumber="7"
-          middleMesure="mph"
-          end="WSW"/>
-          <Card_abajo
-          top="Wind status"
-          middleNumber="7"
-          middleMesure="mph"
-          end="WSW"/>
+          top="Pressure"
+          middleNumber={DataResponse?.list[0].main.pressure} 
+          middleMesure="mb"/>
+          </div>
+
+
+
+
+
+
+          
+
+          
+
+          
         </div>
         
         

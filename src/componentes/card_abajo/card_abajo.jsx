@@ -2,17 +2,12 @@ import "./card_abajo.css"
 
 function Card_abajo(props){
     return(
-        <div className="contenedor_card_abajo">
+        <div >
             <p>{props.top}</p>
                 <div>
                     <p>{props.middleNumber}</p>
                     <p>{props.middleMesure}</p>
                 </div>
-                <div>
-                    <img src="" alt="flecha"/>
-                    <p>{props.end}</p>
-                </div>
-
         </div>
     )
 }
