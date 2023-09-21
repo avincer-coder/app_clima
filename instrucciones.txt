@@ -1,14 +1,4 @@
-Limpiar yo
-Estructura html yo
-Un poco de css yo
-Iniciar proyecto con git hacerse
-    - Crear 3 ramas
-Conectarse a la appi 
- git checkout cambiar de rama y de commit
- 
+Input su valor se guarde en una variable cuando se le de click a search    
 
+El click en search va a detonar una funcion que use el useState de ciudad
 
-
-
-Modal aparesca y desapareesca
-condicional /)(=?¡*¨[*]??=¡=)(/(/&%%&&&&&&))

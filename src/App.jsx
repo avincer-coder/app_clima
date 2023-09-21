@@ -3,10 +3,12 @@ import axios  from 'axios'
 import { useEffect, useState } from 'react'
 import Card from './componentes/card/card'
 import Card_abajo from './componentes/card_abajo/card_abajo'
+import InputSearch from './funciones/Input_text'
 
 function App() {
     const [DataResponse, setDataResponse] = useState(null) 
     const [cambioCiudad, SetCambioCiudad] = useState("London")
+    const [valorInput, setValorInput] = useState("")
     useEffect( ()=>{
      
       
@@ -70,6 +72,7 @@ function App() {
       SetCambioCiudad("Canada")
     }
     
+   
 
 
     
@@ -211,9 +214,18 @@ function App() {
 
             {usoDeModal&&
       <div className="contenedor_modal">
-        <button className='btn_cerrar_modal' onClick={cerrar_modal}>X</button>
+        <button 
+          className='btn_cerrar_modal' 
+          onClick={cerrar_modal}
+        >
+            X
+        </button>
           <div className='contenedor_text_search'>
-            <input type="text" placeholder='search location'/>
+            <input 
+              type="text" 
+              placeholder='search location' 
+              onChange={()=>InputSearch} value="hola" 
+            />
             <button className='btn_search'>Search</button>
           </div>
           <div className='countries'>
