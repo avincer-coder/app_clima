@@ -224,7 +224,8 @@ function App() {
             <input 
               type="text" 
               placeholder='search location' 
-              onChange={()=>InputSearch} value="hola" 
+              onChange={()=>InputSearch(setValorInput)} 
+              value={valorInput}
             />
             <button className='btn_search'>Search</button>
           </div>

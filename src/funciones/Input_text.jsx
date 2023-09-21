@@ -1,5 +1,8 @@
-function InputSearch(e){
- console.log(e)     
+function InputSearch({e, setValorInput}){
+ setValorInput(e.target.value)  
+ console.log(e)
 }
 
 export default InputSearch
+
+//225
