@@ -9,18 +9,18 @@ function App() {
     const [DataResponse, setDataResponse] = useState(null) 
     const [cambioCiudad, SetCambioCiudad] = useState("London")
     const [valorInput, setValorInput] = useState("")
+    // const [UbicacionLatitude, setUbicacionLatitude] = useState(null)
+    // const [UbicacionLongitude, setUbicacionLongitude] = useState(null)
+
+
+    
+    const apiKey = "7273842f78e9cc5efe909fab65025514";//Llave de mi api
     useEffect( ()=>{
-     
-      
-      // let ciudad = "London";
-      const apiKey = "7273842f78e9cc5efe909fab65025514";
       const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cambioCiudad}&appid=${apiKey}`;
       console.log(url)
       axios.get(url) // Json con data es asincronico (no sabemos exactamente el tiempo en el que va a llegar)
       .then( 
         response => {
-          
-          // console.log(response)
           setDataResponse(response.data)
         }
       )
@@ -39,7 +39,7 @@ function App() {
 
       const year = date.getFullYear();
 
-      const nombresDias = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+      const nombresDias = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
       const monthNames = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
@@ -96,8 +96,28 @@ function App() {
     }
 
     function BtnSearch(){
-      console.log("Btn search funcional")
       SetCambioCiudad(valorInput)
+    }
+    const BtnUbicacion = async ()=>{
+      let UbicacionLatitude, UbicacionLongitude
+      navigator.geolocation.getCurrentPosition((position)=>{
+        // setUbicacionLatitude(position.coords.latitude)
+        // setUbicacionLongitude(position.coords.longitude)
+        UbicacionLatitude = position.coords.latitude
+        UbicacionLongitude = position.coords.longitude
+        let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${UbicacionLatitude}&lon=${UbicacionLongitude}&appid=${apiKey}`; 
+        axios.get(url) 
+        .then( 
+          response => {
+            setDataResponse(response.data)
+          }
+        )
+        .catch(
+          error =>{
+            console.error(error.message)
+          }
+        )
+      })
     }
 
   return (
@@ -105,7 +125,10 @@ function App() {
       <section className='izquierda'>
         <div className='contenedor_btn_arriba'>
           <button onClick={mostrar_modal} className='search'>Search for places</button>
-          <button className='mira'>Icono</button>
+          <button 
+            className='mira'
+            onClick={BtnUbicacion}
+          >Icono</button>
         </div>
         <div className='contenedor_imagenes'>
           {/* <img className='nubes_fondo' src="/img/Cloud-background.png" alt="imagen nubes de fondo" /> */}
@@ -113,7 +136,7 @@ function App() {
         </div>
         <div className='grados'>
           <p>
-            {DataResponse?.list[0].main.temp.toFixed()/10}
+            {Math.round(DataResponse?.list[0].main.temp/10)}
           </p>
           <p className='letras_transparente'>°C</p> 
         </div >
@@ -140,19 +163,12 @@ function App() {
             <Card
               dia={formatTimestamp(cadaList.dt)}
               imgsDinamicas={ImgClimaDinamico(cadaList.weather[0].main)}
-              gradosMinimo={cadaList.main.temp_min.toFixed()/10}
-              gradosMaximo={cadaList.main.temp_max.toFixed()/10}
-              
-              
-              
-              
+              gradosMinimo={Math.round(cadaList.main.temp_min/10)}
+              gradosMaximo={Math.round(cadaList.main.temp_max/10)}
               />)
-
-
-            
-            // console.log(cadaList.dt)
           ))}
         </div>
+
         <h1>Today's HighLights</h1>
         <div className='derecha_abajo'>
           

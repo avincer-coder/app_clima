@@ -1,4 +1,11 @@
 hay qur manejar errores del input search
 
-
-
+Necesitamos un boton 
+Acceder a nuestra ubicacion 
+    -Por latitud y longitud
+Guardar en variable mi ubicacion
+    -Cambiar la url como consulto la api
+UbucacionActual
+cambioCiudad
+Con su use state 
+useCambioCiudad(UbicacionActual)
