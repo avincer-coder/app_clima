@@ -98,7 +98,7 @@ function App() {
     function BtnSearch(){
       SetCambioCiudad(valorInput)
     }
-    const BtnUbicacion = async ()=>{
+    const BtnUbicacion = ()=>{
       let UbicacionLatitude, UbicacionLongitude
       navigator.geolocation.getCurrentPosition((position)=>{
         // setUbicacionLatitude(position.coords.latitude)
@@ -118,6 +118,20 @@ function App() {
           }
         )
       })
+    }
+
+    const centigradosToFahrenheit =  (centigrados)=>{
+      let fahrenheit = (centigrados * 9/5) + 32;
+      return fahrenheit;
+    }
+
+    const ConversionGrados = (grados)=>{
+      if (grados == "C") {
+        console.log("Dejar los numeros como estan")
+      }
+      else if (grados == "F") {
+        console.log("Operacion matematica para converir grados")
+      } 
     }
 
   return (
@@ -155,6 +169,20 @@ function App() {
       <section className='derecha'>
 
         <div className='derecha_arriba'>
+
+
+
+{/* Botones */}
+          <button 
+          className='btn_centigrados'
+          onClick={()=>ConversionGrados("C")}
+          >C</button>
+
+
+          <button
+          className='btn_faren'
+          onClick={()=>ConversionGrados("F")}
+          >F</button>
 
           {DataResponse?.list.map((cadaList,index) =>(
             (index+1) %  8 === 0 &&(

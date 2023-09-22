@@ -1,11 +1,8 @@
 hay qur manejar errores del input search
 
-Necesitamos un boton 
-Acceder a nuestra ubicacion 
-    -Por latitud y longitud
-Guardar en variable mi ubicacion
-    -Cambiar la url como consulto la api
-UbucacionActual
-cambioCiudad
-Con su use state 
-useCambioCiudad(UbicacionActual)
+(llevar funciones a un archivo aparte)
+Crear 2 botones
+Convertir informacion de la api a centigrados y farenhait
+Inf esta en centigrados transformala con operacion a farenhait pedir a chatgtp
+El boton solo tiene una funcion booleana true y false
+
