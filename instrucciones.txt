@@ -1,4 +1,4 @@
-Input su valor se guarde en una variable cuando se le de click a search    
+hay qur manejar errores del input search
 
-El click en search va a detonar una funcion que use el useState de ciudad
+
 

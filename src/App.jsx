@@ -94,8 +94,11 @@ function App() {
 
       
     }
-    console.log("Aqui viene la variable DataResponse con elementeos")
-    console.log(DataResponse)
+
+    function BtnSearch(){
+      console.log("Btn search funcional")
+      SetCambioCiudad(valorInput)
+    }
 
   return (
     <main className='main_all'>
@@ -224,10 +227,15 @@ function App() {
             <input 
               type="text" 
               placeholder='search location' 
-              onChange={()=>InputSearch(setValorInput)} 
+              onChange={(e)=>InputSearch(e, setValorInput)} 
               value={valorInput}
             />
-            <button className='btn_search'>Search</button>
+            <p>{valorInput}</p>
+            <button 
+              className='btn_search'
+              onClick={BtnSearch}
+            
+            >Search</button>
           </div>
           <div className='countries'>
               <button onClick={clima_london} className='london_arrow all_countries'>
