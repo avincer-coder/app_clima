@@ -18,7 +18,7 @@
 
 .main_all{
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
 }
 .derecha{
     background-color: #100E1D;
