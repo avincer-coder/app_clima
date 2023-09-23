@@ -9,6 +9,8 @@ function App() {
     const [DataResponse, setDataResponse] = useState(null) 
     const [cambioCiudad, SetCambioCiudad] = useState("London")
     const [valorInput, setValorInput] = useState("")
+    const [IsFarenhait, setIsFarenhait] = useState(true)
+
     // const [UbicacionLatitude, setUbicacionLatitude] = useState(null)
     // const [UbicacionLongitude, setUbicacionLongitude] = useState(null)
 
@@ -127,10 +129,10 @@ function App() {
 
     const ConversionGrados = (grados)=>{
       if (grados == "C") {
-        console.log("Dejar los numeros como estan")
+        setIsFarenhait(true)
       }
       else if (grados == "F") {
-        console.log("Operacion matematica para converir grados")
+        setIsFarenhait(false)
       } 
     }
 
@@ -150,9 +152,42 @@ function App() {
         </div>
         <div className='grados'>
           <p>
-            {Math.round(DataResponse?.list[0].main.temp/10)}
+            {IsFarenhait ? Math.round(DataResponse?.list[0].main.temp/10) : 
+            
+            
+            Math.round(  
+            
+            (DataResponse?.list[0].main.temp/10 *9/5)  
+            
+            
+            +32)
+            
+            }
+
+
+            {/* {
+              
+              IsFarenhait
+            
+              ? 
+              
+              Math.round(cadaList.main.temp_min/10) 
+              
+              :
+
+              Math.round(
+                (cadaList.main.temp_min/10 *9/5)
+                
+                +32)
+            
+            } 
+              
+              
+              */}
+
+
           </p>
-          <p className='letras_transparente'>°C</p> 
+          <p className='letras_transparente'>{IsFarenhait ? "C" : "F"}</p> 
         </div >
          <p className='letras_transparente'>{DataResponse?.list[0].weather[0].main.temp}</p>
          <div className='fecha'>
@@ -191,8 +226,22 @@ function App() {
             <Card
               dia={formatTimestamp(cadaList.dt)}
               imgsDinamicas={ImgClimaDinamico(cadaList.weather[0].main)}
-              gradosMinimo={Math.round(cadaList.main.temp_min/10)}
-              gradosMaximo={Math.round(cadaList.main.temp_max/10)}
+              gradosMinimo={IsFarenhait ? Math.round(cadaList.main.temp_min/10) : Math.round((cadaList.main.temp_min/10*9/5)+32)}
+
+
+
+
+              simboloGrados= {IsFarenhait ? "C" : "F"}
+
+
+
+
+
+              gradosMaximo={IsFarenhait ? Math.round(cadaList.main.temp_max/10) : Math.round((cadaList.main.temp_max/10*9/5)+32)}
+
+
+
+
               />)
           ))}
         </div>

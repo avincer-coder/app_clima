@@ -6,3 +6,8 @@ Convertir informacion de la api a centigrados y farenhait
 Inf esta en centigrados transformala con operacion a farenhait pedir a chatgtp
 El boton solo tiene una funcion booleana true y false
 
+
+Hacer condicional si es true 
+    -true ? renderizar los centigrados : renderizar farenhait  
+
+

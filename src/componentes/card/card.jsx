@@ -8,11 +8,11 @@ return(
         <div className="grados_card">
             <div className="grados_numero">
                 <p>{props.gradosMinimo}</p>
-                <p>C</p>
+                <p>{props.simboloGrados}</p>
             </div>
             <div className="grados_numero">
                 <p>{props.gradosMaximo}</p>
-                <p>C</p>
+                <p>{props.simboloGrados}</p>
                 <p></p>
             </div>
         </div>
