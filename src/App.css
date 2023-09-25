@@ -8,58 +8,83 @@
     background-color: #1E213A;
     color: white;
     width: 30%;
-    /* height: 900px; */
-    padding: 50px;
+    padding: 30px 0px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+}
 
+.btns_sm{
+    all: initial;
+    background-color: #6E707A;
+    color: #E7E7EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btns_sm:hover{
+    cursor: pointer;
+    background-color: #a4a8e5;
+    color: black;
+}
+
+.search{
+    width: 161px;
+    height: 40px;
+}
+
+.mira{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
 }
 
 .main_all{
     display: flex;
-    /* height: 100vh; */
 }
+@media (max-width:950){
+    .main_all{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
 .derecha{
     background-color: #100E1D;
     color: white;
     width: 70%;
-    padding: 100px;
+    padding: 30px 160px;
     display: flex;
     flex-direction: column;
 }
 
 .derecha_arriba{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .contenedor_btn_arriba{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 0px 30px;
 }
 
 .grados{
     display: flex;
     justify-content: center;
+    align-items: baseline;
+    margin: 20px 0px;
 }
 
 .letras_transparente{
     color: #A09FB1;
 }
 
-.pie_pagina{
-    display: flex;
-    justify-content: center;
-}
-
-/* .derecha{
-    display: flex;
-} */
-
 .contenedor_modal{
-    /* border: 3px solid gold; */
     width: 30%;
     height: 100%;
     position: absolute;
@@ -73,24 +98,32 @@
    .derecha_abajo{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 
    }
 
    .fecha{
     display: flex;
     justify-content: center;
+    gap: 1rem;
    }
 
 .contenedor_imagenes{
+    background-image:url(public/img/Cloud-background.png);
+    background-color: #1E213A;
+    background-blend-mode: soft-light;
+    background-size: cover;
+    background-position: center center;
+    height: 300px;
+    padding: 1px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
 }
    
 .btn_cerrar_modal{
     all: initial;
     color: white;
-    /* border: 2px solid chartreuse; */
     width: 100%;
     font-size: 24px;
     display: flex;
@@ -111,16 +144,27 @@
     color: white;
     display: flex;
     justify-content: space-between;
-    border: 1px solid #616475;
+    border: 1px solid #1E213A;
     align-items: center;
     padding: 0px 10px;
 }
 
 .only_arrow{
-    color: #616475;
+    color: #1E213A;
     height: 49px;
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.only_arrow:hover{
+    color: #616475;
+}
+
+.london_arrow:hover{
+    border: 1px solid #616475;
+
 }
 
 .countries{
@@ -151,8 +195,133 @@
     background-color: #3C47E9;
     width: 86px;
     height: 48px;
+    text-align: center;
 }
 
 .btn_search:hover{
     cursor: pointer;
+}
+
+.botonera_grados{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+}
+
+.btns_cf{
+    all: initial;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btns_cf:hover{
+    cursor: pointer;
+    background-color: #a4a8e5;
+}
+.btn_cent{
+    color: #100E1D;
+    background-color: #E7E7EB;
+}
+
+.btn_faren{
+    color: #E7E7EB;
+    background-color: #585676;
+    margin-left: 10px;
+}
+
+ /* Cambia el color de fondo aquí */
+/* progress {
+    background-color: yellow;
+    progress-bar-color:yellow;
+    color: yellow;
+  } */
+
+  progress{
+    background-color: #1e213a;
+    width: 250px;
+    height: 10px;
+  }
+
+  progress::-webkit-progress-bar {
+    /* progress-bar-border: 1px solid green; */
+    background-color: #E7E7EB; /* Cambia el color de fondo a amarillo aquí */
+    border-radius: 10px;
+  }
+
+  progress::-webkit-progress-value {
+    background-color: #FFEC65; /* Cambia el color de la barra de progreso a verde aquí */
+    border-radius: 10px;
+  }
+ 
+.locataion_arrow{
+    background-color: #6E707A;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.wsw_arrow{
+    display: flex;
+    align-items: flex-end;
+}
+
+.temp_hoy{
+    font-size: 144px;
+}
+
+.grados_hoy{
+    font-size: 48px;
+}
+
+.costum_inputext{
+    border: 1px solid #6E707A;
+    background-color: #1E213A;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    color: #6E707A;
+    gap: 0.5rem;
+    padding-left: 10px;
+}
+
+.inputext{
+    background-color: #1E213A;
+    border: 0px;
+    height: 70%;
+    width: 90%;
+    color: white;
+    padding-left: 5px;
+}
+
+.tipo_clima{
+    color: #A09FB1;
+    font-size: 36px;
+    text-align: center;
+    margin: 30px 0px 60px;
+}
+
+.numeros_progress{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sol_nube_lluvia{
+    height: 200px;
+}
+
+.pie_pagina{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    color: #A09FB1;
+    margin-top: 20px;
 }

@@ -3,10 +3,10 @@ import "./card_abajo.css"
 function Card_abajo(props){
     return(
         <div >
-            <p>{props.top}</p>
-                <div>
-                    <p>{props.middleNumber}</p>
-                    <p>{props.middleMesure}</p>
+            <p className="top_cardabajo">{props.top}</p>
+                <div className="medida_simbolo">
+                    <p className="middle_number">{props.middleNumber}</p>
+                    <p className="medida">{props.middleMesure}</p>
                 </div>
         </div>
     )

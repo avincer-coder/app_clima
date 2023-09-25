@@ -10,7 +10,7 @@ return(
                 <p>{props.gradosMinimo}</p>
                 <p>{props.simboloGrados}</p>
             </div>
-            <div className="grados_numero">
+            <div className="grados_numero grados_color">
                 <p>{props.gradosMaximo}</p>
                 <p>{props.simboloGrados}</p>
                 <p></p>

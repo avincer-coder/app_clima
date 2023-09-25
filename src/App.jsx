@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react'
 import Card from './componentes/card/card'
 import Card_abajo from './componentes/card_abajo/card_abajo'
 import InputSearch from './funciones/Input_text'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faLocationCrosshairs, faLocationDot, faLocationArrow, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+
 
 function App() {
     const [DataResponse, setDataResponse] = useState(null) 
@@ -41,10 +44,10 @@ function App() {
 
       const year = date.getFullYear();
 
-      const nombresDias = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
+      const nombresDias = ["Sun.", "Mon.", "Tue.", "Wen.", "Thu.", "Fri.", "Sat."];
       const monthNames = [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        'Jan', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
       ];
       const month = monthNames[date.getMonth()]; 
 
@@ -135,23 +138,26 @@ function App() {
         setIsFarenhait(false)
       } 
     }
+    console.log(DataResponse)
 
   return (
     <main className='main_all'>
       <section className='izquierda'>
         <div className='contenedor_btn_arriba'>
-          <button onClick={mostrar_modal} className='search'>Search for places</button>
+          <button onClick={mostrar_modal} className='search btns_sm'>Search for places</button>
           <button 
-            className='mira'
+            className='mira btns_sm'
             onClick={BtnUbicacion}
-          >Icono</button>
+          >
+            <FontAwesomeIcon icon={faLocationCrosshairs}/>
+          </button>
         </div>
         <div className='contenedor_imagenes'>
-          {/* <img className='nubes_fondo' src="/img/Cloud-background.png" alt="imagen nubes de fondo" /> */}
-          <img className='sol_nube_lluvia' src={ImgClimaDinamico(DataResponse?.list[0].weather[0].main)} alt="nube y sol" />
+          <img 
+          className='sol_nube_lluvia' src={ImgClimaDinamico(DataResponse?.list[0].weather[0].main)} alt="nube y sol" />
         </div>
         <div className='grados'>
-          <p>
+          <p className='temp_hoy'>
             {IsFarenhait ? Math.round(DataResponse?.list[0].main.temp/10) : 
             
             
@@ -187,8 +193,20 @@ function App() {
 
 
           </p>
-          <p className='letras_transparente'>{IsFarenhait ? "C" : "F"}</p> 
+          
+          <p className='letras_transparente grados_hoy'>{IsFarenhait ? "°C" : "°F"}</p> 
+          
         </div >
+
+
+
+
+          
+         <p className='tipo_clima'>{DataResponse?.list[0].weather[0].main}</p>
+
+
+
+
          <p className='letras_transparente'>{DataResponse?.list[0].weather[0].main.temp}</p>
          <div className='fecha'>
             <p className='letras_transparente'>Today</p>
@@ -196,29 +214,26 @@ function App() {
             <p className='letras_transparente'>{formatTimestamp(DataResponse?.list[0].dt)}</p>
          </div>
          <div className='pie_pagina'>
-            <img  className='Icono_ubicacion' src="" alt="icono ubicacion" />
+            <FontAwesomeIcon icon={faLocationDot} />
             <p className='letras_transparente'>{DataResponse?.city.name}</p>
          </div>
       </section>
 
       <section className='derecha'>
 
-        <div className='derecha_arriba'>
-
-
-
-{/* Botones */}
+        <div className='botonera_grados'>
           <button 
-          className='btn_centigrados'
-          onClick={()=>ConversionGrados("C")}
-          >C</button>
+            className='btns_cf btn_cent'
+            onClick={()=>ConversionGrados("C")}
+            >°C
+          </button>
 
+              <button className='btns_cf btn_faren' onClick={()=>ConversionGrados("F")}>°F
+   
+              </button>
+        </div>
 
-          <button
-          className='btn_faren'
-          onClick={()=>ConversionGrados("F")}
-          >F</button>
-
+        <div className='derecha_arriba'>
           {DataResponse?.list.map((cadaList,index) =>(
             (index+1) %  8 === 0 &&(
             
@@ -231,7 +246,7 @@ function App() {
 
 
 
-              simboloGrados= {IsFarenhait ? "C" : "F"}
+              simboloGrados= {IsFarenhait ? "°C" : "°F"}
 
 
 
@@ -252,11 +267,13 @@ function App() {
           <div className="contenedor_card_abajo">
             <Card_abajo
             top="Wind status"
-            middleNumber={DataResponse?.list[0].wind.speed}
+            middleNumber={Math.round(DataResponse?.list[0].wind.speed)}
             middleMesure="mph"
             />
-            <div>
-                <img src="" alt="" />
+            <div className='wsw_arrow'>
+                <div className='locataion_arrow'>
+                  <FontAwesomeIcon icon={faLocationArrow} rotation={180} />
+                </div>
                 <p>WSW</p>
             </div>
           </div>
@@ -266,48 +283,58 @@ function App() {
           top="Humidity"
           middleNumber={DataResponse?.list[0].main.humidity} 
           middleMesure="%"/>
+
             <div>
-               <progress value={DataResponse?.list[0].main.humidity} max="100"></progress>
+
+
+                <div className='numeros_progress'>
+                  <p>0</p>
+                  <p>50</p>
+                  <p>100%</p>
+                </div>
+               <progress 
+               value={DataResponse?.list[0].main.humidity} 
+               max="100"
+               className='custom-progress'
+               ></progress>
+
+
+
+
             </div>
           </div>
           
           
           
-          <div className="contenedor_card_abajo">
-          <Card_abajo
-          top="Visibility"
-          middleNumber={DataResponse?.list[0].visibility/1000}
-          middleMesure="mph"/>
+          <div className="contenedor_card_abajo ">
+            <p>Visibility</p>
+          <div className='miles_mb'>
+            <Card_abajo
+            middleNumber={DataResponse?.list[0].visibility/1000}
+            />
+            <p className='medicion_abajo'>miles</p>
+          </div>
           </div>
           
           
-          <div className="contenedor_card_abajo">
-          <Card_abajo
-          top="Pressure"
-          middleNumber={DataResponse?.list[0].main.pressure} 
-          middleMesure="mb"/>
+          <div className="contenedor_card_abajo ">
+            <p>Aire Pressure</p>
+          <div className='miles_mb'>
+            <Card_abajo
+            middleNumber={DataResponse?.list[0].main.pressure} 
+            />
+            <p className='medicion_abajo'>mb</p>
           </div>
-
-
-
-
-
-
-          
-
-          
-
-          
+          </div>
         </div>
         
-        
-      </section>
-      {/* <section>
-      <p>{DataResponse?.name}</p>
-        <p>{DataResponse?.wind.speed}</p>
-        <p>Temperatura: {DataResponse?.main.temp}</p>
-      </section> */}
 
+
+
+
+
+{/* MODAL */}
+      </section>
             {usoDeModal&&
       <div className="contenedor_modal">
         <button 
@@ -317,13 +344,17 @@ function App() {
             X
         </button>
           <div className='contenedor_text_search'>
-            <input 
-              type="text" 
-              placeholder='search location' 
-              onChange={(e)=>InputSearch(e, setValorInput)} 
-              value={valorInput}
-            />
-            <p>{valorInput}</p>
+            <div className='costum_inputext'>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <input 
+                className='inputext'
+                type="text" 
+                placeholder='search location' 
+                onChange={(e)=>InputSearch(e, setValorInput)} 
+                value={valorInput}
+              />
+            </div>
+
             <button 
               className='btn_search'
               onClick={BtnSearch}
@@ -331,12 +362,24 @@ function App() {
             >Search</button>
           </div>
           <div className='countries'>
-              <button onClick={clima_london} className='london_arrow all_countries'>
+              
+              <button 
+                onClick={clima_london} className='london_arrow all_countries'>
                 <p>London</p> 
                 <p className='only_arrow'>{">"}</p>
               </button>
-              <button onClick={clima_barsa} className='all_countries two_countries'>Barcelona</button>
-              <button onClick={clima_canada} className='all_countries two_countries'>Canada </button>
+
+              <button 
+                onClick={clima_barsa}         className='london_arrow all_countries '>
+                  <p>Barcelona</p>
+                  <p className='only_arrow'>{">"}</p>
+              </button>
+
+              <button 
+                onClick={clima_canada} className='london_arrow all_countries '>
+                  <p>Canada </p>
+                  <p className='only_arrow'>{">"}</p>
+              </button>
 
 
           </div>

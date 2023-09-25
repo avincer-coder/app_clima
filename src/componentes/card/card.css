@@ -13,6 +13,8 @@
 
 .grados_card{
     display: flex;
+    width: 100%;
+    justify-content: space-around;
 }
 
 .grados_numero{
@@ -21,4 +23,8 @@
 
 .img_5images{
     height: 62px;
+}
+
+.grados_color{
+    color: #A09FB1;
 }

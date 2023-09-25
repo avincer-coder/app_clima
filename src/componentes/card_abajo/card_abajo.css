@@ -1,12 +1,44 @@
 .contenedor_card_abajo{
     background-color: #1E213A;
-    width: 328px;
-    height: 204px;
+    width: 350px;
+    /* height: 204px; */
     top: 457px;
     left: 613px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
+    margin: 20px 0px;
     padding: 30px;
+}
+
+.miles_mb{
+    display: flex;
+}
+
+.middle_number{
+    font-size: 64px;display: flex;
+
+}
+
+.medida_simbolo{
+    display: flex;
+}
+
+.medida{
+    display: flex;
+    align-items: center;
+    font-size: 36px;
+}
+
+.top_cardabajo{
+    display: flex;
+    justify-content: center;
+}
+
+.medicion_abajo{
+    font-size: 36px;
+    display: flex;
+    align-items: flex-end;
+    height: 65px;
+    margin-left: 15px;
 }
