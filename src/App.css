@@ -24,7 +24,7 @@
 
 .btns_sm:hover{
     cursor: pointer;
-    background-color: #a4a8e5;
+    background-color: white;
     color: black;
 }
 
@@ -43,26 +43,40 @@
 .main_all{
     display: flex;
 }
-@media (max-width:950){
+
+@media (max-width:950px){
     .main_all{
         display: flex;
         flex-direction: column;
     }
+    
+    .izquierda{
+        width: 100%;
+    }
+
+    .derecha{
+        width: 100%;
+    }
+    .derecha_abajo{
+        padding: 0px;
+    }
+    .contenedor_modal{
+        width: 100%;
+    }
 }
+
 
 
 .derecha{
     background-color: #100E1D;
     color: white;
-    width: 70%;
-    padding: 30px 160px;
     display: flex;
     flex-direction: column;
 }
 
 .derecha_arriba{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
@@ -85,7 +99,7 @@
 }
 
 .contenedor_modal{
-    width: 30%;
+    /* width: 30%; */
     height: 100%;
     position: absolute;
     left: 0;
@@ -98,8 +112,8 @@
    .derecha_abajo{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-
+    justify-content: center;
+    padding: 30px;
    }
 
    .fecha{
@@ -176,7 +190,6 @@
     all: initial;
     padding: 0px 10px;
     color: white;
-    /* border: 1px solid gold; */
     height: 50px;
     width: 100px;
 }
@@ -233,13 +246,6 @@
     margin-left: 10px;
 }
 
- /* Cambia el color de fondo aquí */
-/* progress {
-    background-color: yellow;
-    progress-bar-color:yellow;
-    color: yellow;
-  } */
-
   progress{
     background-color: #1e213a;
     width: 250px;
@@ -247,13 +253,12 @@
   }
 
   progress::-webkit-progress-bar {
-    /* progress-bar-border: 1px solid green; */
-    background-color: #E7E7EB; /* Cambia el color de fondo a amarillo aquí */
+    background-color: #E7E7EB; 
     border-radius: 10px;
   }
 
   progress::-webkit-progress-value {
-    background-color: #FFEC65; /* Cambia el color de la barra de progreso a verde aquí */
+    background-color: #FFEC65; 
     border-radius: 10px;
   }
  

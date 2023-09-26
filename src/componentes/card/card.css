@@ -8,7 +8,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
+    margin: 15px 0px;
 }
 
 .grados_card{
